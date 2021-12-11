@@ -12,7 +12,7 @@ import SceneKit
 public class GazeDetector: NSObject, VirtualContentController {
     var contentNode: SCNNode?
     
-    // Load multiple copies of the axis origin visualization for the transforms this class visualizes.
+    // Use Apples default coordinateOrigin visualization
     lazy var rightEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     lazy var leftEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     
@@ -37,7 +37,6 @@ public class GazeDetector: NSObject, VirtualContentController {
         rightEyeNode.simdTransform = faceAnchor.rightEyeTransform
         leftEyeNode.simdTransform = faceAnchor.leftEyeTransform
         visionPosition = [faceAnchor.lookAtPoint.x, faceAnchor.lookAtPoint.y]
-        print(faceAnchor.lookAtPoint)
     }
     
     func addEyeTransformNodes() {

@@ -15,9 +15,6 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
-        
-        // If this is the first time with this anchor, get the controller to create content.
-        // Otherwise (switching content), will change content when setting `selectedVirtualContent`.
         DispatchQueue.main.async {
             let contentController = GazeDetector()
             if node.childNodes.isEmpty, let contentNode = contentController.renderer(renderer, nodeFor: faceAnchor) {
@@ -30,27 +27,22 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
     public var positionLabel: UILabel = UILabel(frame: CGRect(x: 100, y: 100, width: 150, height: 100))
     
     @IBOutlet var sceneView: ARSCNView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         sceneView.delegate = self
         sceneView.session.delegate = self
         sceneView.automaticallyUpdatesLighting = true
         positionLabel.text = "Vision location"
         sceneView.addSubview(positionLabel)
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // AR experiences typically involve moving the device without
-        // touch input for some time, so prevent auto screen dimming.
+        //Disable screen sleeping
         UIApplication.shared.isIdleTimerDisabled = true
-        
         // "Reset" to run the AR session for the first time.
-        resetTracking()
+        beginTracking()
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
@@ -65,13 +57,12 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
         let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
         
         DispatchQueue.main.async {
-            //self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
-            print("Failure \(errorMessage)")
+            self.positionLabel.text = "AR Session Error - \(errorMessage)"
         }
     }
     
     /// - Tag: ARFaceTrackingSetup
-    func resetTracking() {
+    func beginTracking() {
         guard ARFaceTrackingConfiguration.isSupported else { return }
         let configuration = ARFaceTrackingConfiguration()
         if #available(iOS 13.0, *) {
@@ -79,8 +70,6 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
         }
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
-        faceAnchorsAndContentControllers.removeAll()
     }
     
     /// - Tag: ARFaceGeometryUpdate
@@ -97,7 +86,4 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
         }
         contentController.renderer(renderer, didUpdate: contentNode, for: anchor)
     }
-
 }
-
-
