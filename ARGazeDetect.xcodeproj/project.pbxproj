@@ -16,6 +16,7 @@
 		1B966D2727643DCD0092108B /* VirtualContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B966D2627643DCD0092108B /* VirtualContent.swift */; };
 		1B966D29276440B90092108B /* GazeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B966D28276440B90092108B /* GazeDetector.swift */; };
 		1B966D2B276444450092108B /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B966D2A276444450092108B /* Models.scnassets */; };
+		1B966D2D276466C40092108B /* ad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1B966D2C276466C40092108B /* ad.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1B966D2627643DCD0092108B /* VirtualContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualContent.swift; sourceTree = "<group>"; };
 		1B966D28276440B90092108B /* GazeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeDetector.swift; sourceTree = "<group>"; };
 		1B966D2A276444450092108B /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		1B966D2C276466C40092108B /* ad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ad.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				1B966D1427643AA80092108B /* SceneDelegate.swift */,
 				1B966D1627643AA80092108B /* ViewController.swift */,
 				1B966D28276440B90092108B /* GazeDetector.swift */,
+				1B966D2C276466C40092108B /* ad.mp4 */,
 				1B966D2A276444450092108B /* Models.scnassets */,
 				1B966D2627643DCD0092108B /* VirtualContent.swift */,
 				1B966D1827643AA80092108B /* Main.storyboard */,
@@ -133,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B966D2D276466C40092108B /* ad.mp4 in Resources */,
 				1B966D1F27643AA90092108B /* LaunchScreen.storyboard in Resources */,
 				1B966D2B276444450092108B /* Models.scnassets in Resources */,
 				1B966D1C27643AA90092108B /* Assets.xcassets in Resources */,
